@@ -1,4 +1,0 @@
-https://abs.twimg.com/a/1419352959/img/t1/front_page/exp_photo_set_astro_reid.jpg
-
-
-bootstrap link  <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
