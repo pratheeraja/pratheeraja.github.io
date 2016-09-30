@@ -1,168 +1,348 @@
-<!doctype html>
-<html>
-  <head>
-    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="articles container">
+<!DOCTYPE html>
+<html ng-app="RSSFeedApp">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <title>theVOID | returns !null</title>
+      <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js'></script>
+      <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <script type='text/javascript'>
+         //<![CDATA[ 
+         
+         	'use strict';
+         
+         
+         	var App = angular.module('RSSFeedApp', []);
+                 
+                 
+                 
+         	App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {    
+         		$scope.loadFeed=function(e){        
+         			Feed.parseFeed($scope.feedSrc).then(function(res){
+         				$scope.loadButonText=angular.element(e.target).text();
+         				$scope.feeds=res.data.responseData.feed.entries;
+         			});
+         		}
+         	}]);
+             
+                App.controller("time",['$scope',function($scope){
+                    $scope.currentdate=new Date();    
+                }]);
+             
+             
+         
+         	App.factory('FeedService',['$http',function($http){
+         		return {
+         			parseFeed : function(url){
+         				return $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url));
+         			}
+         		}
+         	}]);
+             
+             
+                 
+         
+         //]]>  
+      </script>
+<style>
+#cssload-cupcake {
+	flex-direction: row;
+		-o-flex-direction: row;
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		-moz-flex-direction: row;
+	justify-content: center;
+		-o-justify-content: center;
+		-ms-justify-content: center;
+		-webkit-justify-content: center;
+		-moz-justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+.cssload-letter {
+	font-size: 97px;
+	color: rgb(34,34,34);
+	font-family: tahoma;
+}
+
+.cssload-box {
+	display: box;
+	display: box;
+		display: -o-box;
+		display: -ms-box;
+		display: -webkit-box;
+		display: -moz-box;
+	display: flex;
+		display: -o-flex;
+		display: -ms-flex;
+		display: -webkit-flex;
+		display: -moz-flex;
+}
+
+.cssload-cupcakeCircle,
+.cssload-cupcakeInner,
+.cssload-cupcakeCore {
+	border-radius: 50%;
+}
+
+.cssload-cupcake,
+.cssload-letter,
+.cssload-cupcakeCircle,
+.cssload-cupcakeInner,
+.cssload-cupcakeCore {
+	flex: none;
+		-o-flex: none;
+		-ms-flex: none;
+		-webkit-flex: none;
+		-moz-flex: none;
+}
+
+.cssload-letter,
+.cssload-cupcakeCircle {
+	align-self: center;
+	align-self: center;
+		-o-align-self: center;
+		-ms-align-self: center;
+		-webkit-align-self: center;
+		-moz-align-self: center;
+}
+
+.cssload-cupcakeCircle {
+	align-items: center;
+		-o-align-items: center;
+		-ms-align-items: center;
+		-webkit-align-items: center;
+		-moz-align-items: center;
+	justify-content: center;
+		-o-justify-content: center;
+		-ms-justify-content: center;
+		-webkit-justify-content: center;
+		-moz-justify-content: center;
+	height: 97px;
+	width: 97px;
+	background-color: rgb(34,34,34);
+}
+
+.cssload-cupcakeInner {
+	align-self: center;
+		-o-align-self: center;
+		-ms-align-self: center;
+		-webkit-align-self: center;
+		-moz-align-self: center;
+	justify-content: center;
+		-o-justify-content: center;
+		-ms-justify-content: center;
+		-webkit-justify-content: center;
+		-moz-justify-content: center;
+	height: 50%;
+	width: 50%;
+	background-color: rgb(255,255,255);
+	animation-name: cssload-cupcakeAnimate;
+		-o-animation-name: cssload-cupcakeAnimate;
+		-ms-animation-name: cssload-cupcakeAnimate;
+		-webkit-animation-name: cssload-cupcakeAnimate;
+		-moz-animation-name: cssload-cupcakeAnimate;
+	animation-duration: 575ms;
+		-o-animation-duration: 575ms;
+		-ms-animation-duration: 575ms;
+		-webkit-animation-duration: 575ms;
+		-moz-animation-duration: 575ms;
+	animation-direction: alternate;
+		-o-animation-direction: alternate;
+		-ms-animation-direction: alternate;
+		-webkit-animation-direction: alternate;
+		-moz-animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+		-o-animation-timing-function: ease-in-out;
+		-ms-animation-timing-function: ease-in-out;
+		-webkit-animation-timing-function: ease-in-out;
+		-moz-animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+		-o-animation-iteration-count: infinite;
+		-ms-animation-iteration-count: infinite;
+		-webkit-animation-iteration-count: infinite;
+		-moz-animation-iteration-count: infinite;
+}
+
+.cssload-cupcakeCore {
+	align-self: center;
+		-o-align-self: center;
+		-ms-align-self: center;
+		-webkit-align-self: center;
+		-moz-align-self: center;
+	height: 25%;
+	width: 25%;
+	background-color: rgb(34,34,34);
+	animation-name: coreAnimate;
+		-o-animation-name: coreAnimate;
+		-ms-animation-name: coreAnimate;
+		-webkit-animation-name: coreAnimate;
+		-moz-animation-name: coreAnimate;
+	animation-duration: 1.15s;
+		-o-animation-duration: 1.15s;
+		-ms-animation-duration: 1.15s;
+		-webkit-animation-duration: 1.15s;
+		-moz-animation-duration: 1.15s;
+	animation-direction: alternate;
+		-o-animation-direction: alternate;
+		-ms-animation-direction: alternate;
+		-webkit-animation-direction: alternate;
+		-moz-animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+		-o-animation-timing-function: ease-in-out;
+		-ms-animation-timing-function: ease-in-out;
+		-webkit-animation-timing-function: ease-in-out;
+		-moz-animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+		-o-animation-iteration-count: infinite;
+		-ms-animation-iteration-count: infinite;
+		-webkit-animation-iteration-count: infinite;
+		-moz-animation-iteration-count: infinite;
+}
+
+
+
+
+
+@keyframes cssload-cupcakeAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-o-keyframes cssload-cupcakeAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-ms-keyframes cssload-cupcakeAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-webkit-keyframes cssload-cupcakeAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-moz-keyframes cssload-cupcakeAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@keyframes coreAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-o-keyframes coreAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-ms-keyframes coreAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-webkit-keyframes coreAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+@-moz-keyframes coreAnimate {
+	to {
+		height: 90%;
+		width: 90%;
+	}
+}
+
+/* */
+</style>
+   </head>
+   <body>
+      <div style="margin-left:120px; margin-right: 120px;" data-ng-controller="FeedCtrl ">
+          <div ng-controller="time">  <h3 style="margin-left:15px;">  <a href="#" onclick="hide()" ng-click="feedSrc='https://news.google.co.in/news?cf=all&hl=en&pz=1&ned=in&topic=tc&output=rss';loadFeed($event)">theVOID</a>
+                  <span><h5 class="pull-right" style="padding-right:18px;">{{currentdate | date:'medium'}}</h5></span>
+          </h3> 
+         
+          </div>
+         <ul class="breadcrumb"  >
+             
+             <li><a href="#" onclick="hide()" ng-click="feedSrc='https://news.google.co.in/news?cf=all&hl=en&pz=1&ned=in&topic=tc&output=rss';loadFeed($event)">ng-tech</a></li>
+              <li><a href="#" onclick="hide()" ng-click="feedSrc='https://twitrss.me/twitter_search_to_rss/?term=angularjs';loadFeed($event)">ng-angularjs</a></li>
+            <li><a href="#" onclick="hide()" ng-click="feedSrc='http://news.ycombinator.com/rss';loadFeed($event)">ng-hackernews</a></li>
+            <li><a href="#" onclick ="hide()" ng-click="feedSrc='http://feeds2.feedburner.com/Mashable';loadFeed($event)">ng-mashable</a></li>
+            <li><a href="#" onclick="hide()" ng-click="feedSrc='http://feeds.feedburner.com/TechCrunch';loadFeed($event)">ng-techcrunch</a></li>
+            <li><a href="#" onclick="hide()" ng-click="feedSrc='https://github.com/pratheeraja.private.atom?token=AFUW24Mszlz1HU3HQOYZgk3EUSE9NJ5iks61-eH7wA==';loadFeed($event)">ng-github</a></li>
+            <li></li>
+            <span class="badge badge-warning " ng-show="feeds.length > 0">{{(feeds | filter:filterText).length}} items</span>
+            <input class=" span12 pull-right input-prepend icon-search" type="text" data-ng-model="filterText" placeholder="     ng-search"/>
+         </ul>
+         <script>
+             function hide() {
+    var divOne = document.getElementById('intro');
+divOne.style.display="none";
+}
+
+         </script>
+         
+         <div id="conHid"  >
+            <ul class="list-group">
+               <li class='list-group-item' ng-repeat="feed in feeds | filter:filterText">
+                  <h5><a target="_blank" href="{{feed.link}}">{{feed.title}}</a></h5>
+                  <p class="text-left">{{feed.contentSnippet}}</p>
+                  <span class="small">{{feed.publishedDate}}</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+       
+       <div id="intro">
+<div  style="margin-top:120px;"id="cssload-cupcake" class="cssload-box">
+	<span class="cssload-letter">t</span>
+
+	<div class="cssload-cupcakeCircle cssload-box">
+		<div class="cssload-cupcakeInner cssload-box">
+			<div class="cssload-cupcakeCore cssload-box"></div>
+
+		</div>
+	</div>
+
+	<span class="cssload-letter cssload-box">e</span>
+	<span class="cssload-letter cssload-box">V</span>
+	<span class="cssload-letter cssload-box">O</span>
+	<span class="cssload-letter cssload-box">I</span>
+	<span class="cssload-letter cssload-box">D</span>
+</div>
+           <h3 style='text-align:center;'>returns !null</h3>
+       </div>
       
-      <div class="article current">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">FLIGHT</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">Embraer adds third Legacy 500 prototype to flight test campaign</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Mar 23</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>Embraer adds third Legacy 500 prototype to flight test campaign</h1>
-            <p>The third Legacy 500 has joined Embraer's flight test programme aimed at delivering the midsize business jet in 2014. The airtcraft, serial number 003...</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
+      <div id="footer">
+         
       </div>
-
-      <div class="article">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">AW Commercial Aviation</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">CSeries Supplier Scramble</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Mar 22</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>CSeries Supplier Scramble</h1>
-            <p>Three months before the planned first flight of its CSeries, Bombardier is grappling with supplier issues crucial to meeting its production cost...</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
-      </div>
-
-      <div class="article">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">AW business aviation</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">Flying the Gulfstream G650</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Mar 22</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>Flying the Gulfstream G650</h1>
-            <p>Gulfstream is turning up the heat in the large-cabin business aircraft competition with its new G650 flagship, the largest, fastest, farthest-ranging...</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
-      </div>
-
-      <div class="article">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">FLIGHT</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">New retirements cut RAF VC10 fleet to four</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Mar 22</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>New retirements cut RAF VC10 fleet to four</h1>
-            <p>The UK Royal Air Force has retired another two of its Vickers VC10 tankers, with the pair's departure reducing its inventory of the Rolls-Royce...</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
-      </div>
-
-      <div class="article">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">FLIGHT</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">Virgin can deliver more value for Delta than for SIA: Bastian</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Jul 17</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>Virgin can deliver more value for Delta than for SIA: Bastian</h1>
-            <p>Delta Air Lines president Ed Bastian is confident that the carrier can extract far more value from its shareholding in Virgin Atlantic compared with...</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
-      </div>
-
-      <div class="article">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">AW Defense</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">Freedom Experiences Two More Power Outages</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Mar 22</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>Freedom Experiences Two More Power Outages</h1>
-            <p>The Littoral Combat Ship (LCS-1) USS Freedom’s first overseas deployment to Southeast Asia has been marred by two more power outages...</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
-      </div>
-
-      <div class="article">
-        <div class="item row">
-          <div class="col-xs-3">
-            <p class="source">FLIGHT</p>
-          </div>
-          <div class="col-xs-6">
-            <p class="title">FedEx to acquire up to 30 United 757s</p>
-          </div>
-          <div class="col-xs-3">
-            <p class="pubdate">Mar 22</p>
-          </div>
-        </div>
-        <div class="description row">
-          <div class="col-xs-3">&nbsp;</div>
-          <div class="col-xs-6">
-            <h1>FedEx to acquire up to 30 United 757s</h1>
-            <p>United Airlines is to sell up to 30 Boeing 757s to freight operator FedEx Express, with deliveries of the twinjets set to start this year.</p>
-          </div>
-          <div class="col-xs-3">&nbsp;</div>
-        </div>
-      </div>
-
-    </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+   </body>
 </html>
