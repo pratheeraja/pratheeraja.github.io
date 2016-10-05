@@ -300,7 +300,7 @@
    </head>
    <body  style=" width: 80%;margin-left:10%; margin-right:10%; " >
       <div  data-ng-controller="FeedCtrl ">
-          <div >  <h3 style="margin-left:15px;">  <a href="#" onclick="show()" ng-click="feedSrc='https://news.google.co.in/news?cf=all&hl=en&pz=1&ned=in&topic=tc&output=rss';loadFeed($event)">theVOID</a>
+          <div id="top" >  <h3 style="margin-left:15px;">  <a href="#" onclick="show()" ng-click="feedSrc='https://news.google.co.in/news?cf=all&hl=en&pz=1&ned=in&topic=tc&output=rss';loadFeed($event)">theVOID</a>
 
                   <span ng-controller="time"><h5 class="pull-right" style="padding-right:18px;">{{currentdate | date:'medium'}}</h5></span>
           </h3> 
@@ -386,6 +386,8 @@ divOne.style.display="none";
       <li><a target="_blank"  href="https://facebook.com/pratheeraja">facebook</a></li>
       <li><a target="_blank"   href="https://instagram.com/pratheeraja">instagram</a></li>
       <li><a target="_blank"  href="http://prathee.in">about me</a></li>
+      <li><a target="_blank"  href="https://github.com/pratheeraja/pratheeraja.github.io/tree/master/thevoid">fork this</a></li>
+	    <a href="#top" class="pull-right" > top</a>
     </ul>
     
   
