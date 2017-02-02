@@ -316,9 +316,9 @@
              <li><a href="#"  ng-click="feedSrc='http://alistapart.com/main/feed';loadFeed($event)">ng-alistapart</a></li>
              <li><a href="#"  ng-click="feedSrc='https://www.smashingmagazine.com/feed/';loadFeed($event)">ng-smashing</a></li>
 
-            <li><a href="#"  ng-click="feedSrc='http://daily-javascript.com/atom.xml';loadFeed($event)">ng-dailyjs</a></li>
+            <li><a href="#"  ng-click="feedSrc='http://daily-javascript.com/atom.xml';loadFeed($event)">ng-dailyjs</a></li><br>
 
-            <li><a href="#"  ng-click="feedSrc='https://www.producthunt.com/feed.atom';loadFeed($event)">ng-product hunt</a></li><br>
+            <li><a href="#"  ng-click="feedSrc='https://www.producthunt.com/feed.atom';loadFeed($event)">ng-product hunt</a></li>
             <li><a href="#"  ng-click="feedSrc='http://www.phonearena.com/feed';loadFeed($event)">ng-phone area</a></li>
             
            
@@ -332,7 +332,7 @@
             
             <li></li>
             <span class="badge badge-warning " ng-show="feeds.length > 0">{{(feeds | filter:filterText).length}} items</span>
-            <input class=" span12 pull-right input-prepend icon-search" type="text" data-ng-model="filterText" placeholder="     ng-search"/>
+            <input style="float:right"class=" span12 input-prepend icon-search" type="text" data-ng-model="filterText" placeholder="     ng-search"/>
          </ul>
          <script>
              function hide() {

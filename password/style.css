@@ -1,0 +1,99 @@
+body{
+font-family: 'Fira Mono', monospace;
+width:100%;
+position:fixed;
+}
+.jumbotron{
+background-color:black;
+color:white;
+height:350px;
+}
+.breadcrumb {
+background-color:black;
+padding-left:90px;
+}
+a {
+color:white;
+text-decoration: none !important;
+}
+a:hover {
+background-color:white;
+color:black;
+}
+h1 {
+text-align:center;
+
+}
+#front{
+margin-top:30px;
+margin-left:33%;
+}
+#front button{
+    background-color: white; 
+    border: none;
+    color: black;
+	border-radius:1px;
+    text-align: center;
+    font-size: 23px;
+
+
+}
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+#generate:hover {
+background-color: black;
+color:white;
+border-color:black;
+}
+#demo{
+margin-top:160px;
+}
+::selection {
+    color: black;
+    background-color:white;
+}
+.a2a_kit {
+margin-top:100px;
+}
+#snackbar {
+    visibility: hidden;
+    min-width:250;
+    margin-left: -105px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 15px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

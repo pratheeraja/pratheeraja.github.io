@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+ 
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+ $scope.generatePass = function() {
+	var passwd = "";
+	var chars = "abcdefghijklmnopqrstuvwxyz!@#$%&*ABCDEFGHIJKLMNOP1234567890";
+	for (i=1;i<12;i++) {
+		var c = Math.floor((Math.random()*chars.length)+1);
+		passwd += chars.charAt(c)
+		}
+console.log(passwd);
+	document.getElementById("demo").innerHTML =  passwd;
+
+
+
+	
+	 };
+});
+</script>
+<script>
+function copy(){
+var text = document.getElementById('demo');
+var range = document.createRange();
+range.selectNode(text);
+window.getSelection().addRange(range);
+document.execCommand('copy')
+
+	var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+<style>
+body{
+font-family: 'Fira Mono', monospace;
+width:100%;
+position:fixed;
+}
+.jumbotron{
+background-color:black;
+color:white;
+height:350px;
+}
+.breadcrumb {
+background-color:black;
+padding-left:90px;
+}
+a {
+color:white;
+text-decoration: none !important;
+}
+a:hover {
+background-color:white;
+color:black;
+}
+h1 {
+text-align:center;
+
+}
+#front{
+margin-top:30px;
+margin-left:33%;
+}
+#front button{
+    background-color: white; 
+    border: none;
+    color: black;
+	border-radius:1px;
+    text-align: center;
+    font-size: 23px;
+
+
+}
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+#generate:hover {
+background-color: black;
+color:white;
+border-color:black;
+}
+#demo{
+margin-top:160px;
+}
+::selection {
+    color: black;
+    background-color:white;
+}
+.a2a_kit {
+margin-top:100px;
+}
+#snackbar {
+    visibility: hidden;
+    min-width:250;
+    margin-left: -105px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 15px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+
+
+    <div id="top" ng-app="myApp" ng-controller="myCtrl" >
+
+	<div id="black" class=" container-fluid jumbotron">
+		<nav class=" container breadcrumb col-sm-12 ">
+  <a class="breadcrumb-item" href="#">PasswordGenerator</a> /
+  <a class="breadcrumb-item" href="#">Twitter</a>/
+  <a class="breadcrumb-item" href="#">Facebook</a>/
+    <a class="breadcrumb-item" href="http://twitter.com/pratheeshu1">Developer</a>/
+	  <a class="breadcrumb-item" href="#">Github</a>/
+
+</nav>
+	  	<h1 type="text" id="demo" >PasswordGenerator</h1> 
+	</div>
+	
+	
+<div id="white"class="container">
+		  <div class="row" id="front">
+
+	<div class="col-md-3 col-sm-4" > <button class="btn" ng-click="generatePass()" id="generate" type="button">Generate</button></div>
+    <div class="col-md-3 col-sm-4"> <button onclick="copy()" class="btn" id="generate" style="width:134.41px;">Copy</button></div>
+  </div>
+	<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_default_style pull-right">
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_google_plus"></a>
+</div>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
+<div id="snackbar">Password Copied</div>
+</div>
+</div>
+</body>
+</html>
