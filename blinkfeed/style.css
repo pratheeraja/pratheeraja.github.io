@@ -1,0 +1,40 @@
+body{
+font-family: 'Fira Mono', monospace;
+
+}
+#header {
+	height: 90px;
+
+}
+a {
+
+    text-decoration:none !important;
+    color: grey;
+
+}
+a:hover {
+	color: black;
+}
+#header a{
+	text-decoration: none !important;
+	color: white;
+}
+#header a:hover {
+    background-color: white;
+    color: black
+}
+
+.hover img {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover figure:hover img {
+	-webkit-filter: grayscale(0);
+	filter: grayscale(0);
+}
+#header h1:hover {
+
+	color: #cdb586;
+}

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<title>Blink Feed. </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
+<script src="js/app.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+<link rel="shortcut icon" href="http://prathee.in/thevoid/logo.png" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+<link rel="stylesheet" href="style.css">
+
+<body ng-app="myApp" ng-controller="MainCtrl">
+    <div class="spinner" ng-show="loading"></div>
+
+    <div class="container-fluid rowOne " id="header">
+        <h1 style="padding-left: 30px;"> Blink Feed <i class="fa fa-eye" aria-hidden="true"></i> <!-- <span class="pull-right" style="font-size: 17px;"> {{currentdate | date:'medium'}} </span> --></h1>
+
+    </div>
+
+
+    <div class="text-center hover rowOne">
+        <div class="row" ng-init="head()">
+            <div class="col-sm-4">
+                <a ng-href="{{items.articles[0].url}}" target="_blank">
+                    <div>
+                        <figure><img ng-src="{{items.articles[0].urlToImage}}" width="100%" height="300px" /></figure>
+                    </div>
+                    <div>
+                        <h4> {{items.articles[0].title}} </h4>
+                        <p>{{items.articles[0].description}}</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a ng-href="{{items.articles[1].url}}" target="_blank">
+                    <div>
+                        <figure><img ng-src="{{items.articles[1].urlToImage}}" width="100%" height="300px" /></figure>
+                    </div>
+                    <div>
+                        <h4> {{items.articles[1].title}} </h4>
+                        <p>{{items.articles[0].description}}</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a ng-href="{{items.articles[2].url}}" target="_blank">
+                    <div>
+                        <figure> <img ng-src="{{items.articles[2].urlToImage}}" width="100%" height="300px" /></figure>
+                    </div>
+                    <div>
+                        <h4> {{items.articles[2].title}} </h4>
+                        <p>{{items.articles[0].description}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container hover ">
+
+        <h1 class="rowOne"> General </h1>
+        <div class="row rowOne">
+            <div class="col-sm-4" data-ng-init="getBCC('https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>BCC News</h3>
+                <div>
+                    <a href="{{getBCC.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getBCC.articles[6].urlToImage}}" width="100%" height="200px"> </figure>
+                        <h4> {{getBCC.articles[6].title}} </h4>
+                    </a>
+                </div>
+                <div ng-repeat="item in getBCC.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+
+                </div>
+                <a href="http://www.bbc.com/news" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+            <div class="col-sm-4" ng-init="getHindu('https://newsapi.org/v1/articles?source=the-hindu&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>The Hindu</h3>
+                <div>
+                    <a href="{{getHindu.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getHindu.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getHindu.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getHindu.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+
+                </div>
+
+                <a href="http://www.thehindu.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+            <div class="col-sm-4" ng-init=" getCnn('https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>CNN</h3>
+
+                <div>
+                    <a href="{{getCnn.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getCnn.articles[6].urlToImage}}" width="100%" height="200px"> </figure>
+                        <h4> {{getCnn.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getCnn.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://us.cnn.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row rowOne ">
+            <div class="col-sm-4" ng-init=" getReuters('https://newsapi.org/v1/articles?source=reuters&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Reuters</h3>
+
+                <div>
+                    <a href="{{getReuters.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getReuters.articles[6].urlToImage}}" width="100%" height="200px"> </figure>
+                        <h4> {{getReuters.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getReuters.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.reuters.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init=" getTime('https://newsapi.org/v1/articles?source=time&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Time</h3>
+                <div>
+                    <a href="{{getTime.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getTime.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getTime.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getTime.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://time.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init=" getHuffington('https://newsapi.org/v1/articles?source=the-huffington-post&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>The Huffington Post</h3>
+                <div>
+                    <a href="{{getHuffington.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getHuffington.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getHuffington.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getHuffington.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.huffingtonpost.in/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+        </div>
+
+        <div class="row rowOne ">
+            <div class="col-sm-4" ng-init=" getMirror('https://newsapi.org/v1/articles?source=mirror&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Mirror</h3>
+
+                <div>
+                    <a href="{{getMirror.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getMirror.articles[6].urlToImage}}" width="100%" height="200px"> </figure>
+                        <h4> {{getMirror.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getMirror.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.mirror.co.uk/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init=" getFocus('https://newsapi.org/v1/articles?source=focus&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Focus</h3>
+                <div>
+                    <a href="{{getFocus.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getFocus.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getFocus.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getFocus.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.focus.de/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init=" getNewsweek('https://newsapi.org/v1/articles?source=newsweek&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Newsweek</h3>
+                <div>
+                    <a href="{{getNewsweek.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getNewsweek.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getNewsweek.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getNewsweek.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.newsweek.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+        </div>
+
+        <hr>
+
+        <h1 class="rowOne">Business</h1>
+        <div class="row rowOne">
+            <div class="col-sm-4" ng-init="getBloomberg('https://newsapi.org/v1/articles?source=bloomberg&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Bloomberg</h3>
+                <div>
+                    <a href="{{getBloomberg.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getBloomberg.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getBloomberg.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getBloomberg.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://www.bloomberg.com" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+            <div class="col-sm-4" ng-init="getBI('https://newsapi.org/v1/articles?source=business-insider&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Business Insider</h3>
+                <div>
+                    <a href="{{getBI.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getBI.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getBI.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getBI.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.businessinsider.in/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+            <div class="col-sm-4" ng-init="getFI('https://newsapi.org/v1/articles?source=financial-times&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Financial Times</h3>
+                <div>
+                    <a href="{{getFI.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getFI.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getFI.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getFI.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://www.ft.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+        </div>
+
+        <div class="row rowOne">
+            <div class="col-sm-4" ng-init="getCNBC('https://newsapi.org/v1/articles?source=cnbc&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>CNBC</h3>
+                <div>
+                    <a href="{{getCNBC.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getCNBC.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getCNBC.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getCNBC.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.cnbc.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+            <div class="col-sm-4" ng-init="getFortune('https://newsapi.org/v1/articles?source=fortune&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Fortune</h3>
+                <div>
+                    <a href="{{getFortune.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getFortune.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getFortune.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getFortune.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://fortune.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+            <div class="col-sm-4" ng-init="getWall('https://newsapi.org/v1/articles?source=the-wall-street-journal&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>The Wall Street Journal</h3>
+                <div>
+                    <a href="{{getWall.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getWall.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getWall.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getWall.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://www.wsj.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+        </div>
+
+        <hr>
+
+        <h1 class="rowOne">Technology </h1>
+        <div class="row rowOne">
+
+            <div class="col-sm-4" ng-init="getTechCrunch('https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>TechCrunch</h3>
+
+                <div>
+                    <a href="{{getTechCrunch.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getTechCrunch.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getTechCrunch.articles[6].title}} </h4>
+                    </a>
+                </div>
+                <div ng-repeat="item in getTechCrunch.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://techcrunch.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init="getEngadget('https://newsapi.org/v1/articles?source=engadget&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Engadget</h3>
+                <div>
+                    <a href="{{getEngadget.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getEngadget.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getEngadget.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getEngadget.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://www.engadget.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+            <div class="col-sm-4" ng-init="getHN('https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Hacker News</h3>
+                <div>
+                    <a href="{{getHN.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getHN.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getHN.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getHN.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://news.ycombinator.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="row rowOne">
+            <div class="col-sm-4" ng-init="getTv('https://newsapi.org/v1/articles?source=the-verge&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>The Verge </h3>
+
+                <div>
+                    <a href="{{getTv.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getTv.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getTv.articles[6].title}} </h4>
+                    </a>
+                </div>
+                <div ng-repeat="item in getTv.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.theverge.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init="getTnw('https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>The Next Web</h3>
+                <div>
+                    <a href="{{getTnw.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getTnw.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getTnw.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getTnw.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://thenextweb.com" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+            <div class="col-sm-4" ng-init="getTR('https://newsapi.org/v1/articles?source=techradar&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>TechRadar</h3>
+                <div>
+                    <a href="{{getTR.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getTR.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getTR.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getTR.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.in.techradar.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+        </div>
+        <hr>
+
+        <h1 class="rowOne">Sports</h1>
+
+        <div class="row rowOne">
+            <div class="col-sm-4" ng-init="getCric('https://newsapi.org/v1/articles?source=espn-cric-info&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>ESPN Cric Info</h3>
+
+                <div>
+                    <a href="{{getCric.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getCric.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getCric.articles[6].title}} </h4>
+                    </a>
+                </div>
+                <div ng-repeat="item in getCric.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.espncricinfo.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init="getFFT('https://newsapi.org/v1/articles?source=four-four-two&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>FourFourTwo</h3>
+                <div>
+                    <a href="{{getFFT.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getFFT.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getFFT.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getFFT.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.fourfourtwo.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+            <div class="col-sm-4" ng-init="getSky('https://newsapi.org/v1/articles?source=sky-sports-news&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Sky Sports News</h3>
+                <div>
+                    <a href="{{getSky.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getSky.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getSky.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getSky.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.skysports.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+        </div>
+        <hr>
+        <h1 class="rowOne">Entertainment</h1>
+
+        <div class="row rowOne">
+            <div class="col-sm-4" ng-init="getBuzz('https://newsapi.org/v1/articles?source=buzzfeed&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Buzzfeed</h3>
+
+                <div>
+                    <a href="{{getBuzz.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getBuzz.articles[6].urlToImage}}" width="100%" height="200px"></figure>
+                        <h4> {{getBuzz.articles[6].title}} </h4>
+                    </a>
+                </div>
+                <div ng-repeat="item in getBuzz.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="https://www.buzzfeed.com" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+            </div>
+
+            <div class="col-sm-4" ng-init="getEW('https://newsapi.org/v1/articles?source=entertainment-weekly&sortBy=top&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>Entertainment Weekly</h3>
+                <div>
+                    <a href="{{getEW.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getEW.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getEW.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getEW.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://ew.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+            <div class="col-sm-4" ng-init="getTLB('https://newsapi.org/v1/articles?source=the-lad-bible&sortBy=latest&apiKey=fef31301d31b4f238d80f8670bcc4612')">
+                <h3>The Lad Bible</h3>
+                <div>
+                    <a href="{{getTLB.articles[6].url}}" target="_blank">
+                        <figure><img ng-src="{{getTLB.articles[6].urlToImage}}" alt="Image not available " width="100%" height="200px"></figure>
+                        <h4> {{getTLB.articles[6].title}} </h4>
+                    </a>
+                </div>
+
+                <div ng-repeat="item in getTLB.articles | limitTo:5">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <li>{{item.title}}</li>
+                    </a>
+                </div>
+                <a href="http://www.ladbible.com/" target="_blank">
+                    <li>More Stories >></li>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+    <div class="container-fluid text-center rowOne">
+        ss
+
+        <ul class="breadcrumb">
+            <li><a href="http://twitter.com/pratheeraja" target="_blank">Twitter</a></li>
+            <li><a href="http://facebook.com/pratheeraja" target="_blank">Facebook</a></li>
+            <li><a href="http://Instagram.com/pratheeraja" target="_blank">Instagram</a></li>
+            <li><a href="http://prathee.in" target="_blank">Pratheesh</a></li>
+
+        </ul>
+    </div>
+    <script>
+        window.sr = ScrollReveal({
+            duration: 2000
+        });
+        var fooReveal = {
+            easing: 'ease-in-out',
+            scale: 1.1,
+            mobile: true,
+            origin: 'top'
+        };
+        sr.reveal('.rowOne', fooReveal);
+    </script>
+</body>
+
+</html>
