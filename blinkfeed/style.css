@@ -7,10 +7,10 @@ font-family: 'Fira Mono', monospace;
 
 }
 a {
-
+	 
     text-decoration:none !important;
     color: grey;
-
+   
 }
 a:hover {
 	color: black;
@@ -19,7 +19,7 @@ a:hover {
 	text-decoration: none !important;
 	color: white;
 }
-#header a:hover {
+#header a:hover { 
     background-color: white;
     color: black
 }
@@ -38,3 +38,4 @@ a:hover {
 
 	color: #cdb586;
 }
+
